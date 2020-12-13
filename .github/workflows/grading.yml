@@ -17,9 +17,9 @@ jobs:
         shell: bash
         run: |
           cd "$(git diff --name-only HEAD~1 HEAD)" && \
-          make clean && \
           [ -z "$(git status --short)" ] && \
           mkdir -p build && \
           cp -p ../7-sorter-utility/sorter ./build/ && \
-          [ -n "$(make check)" ] && \
+          [ -n "$(make check -n)" ] && \
+          make check && \
           make clean
