@@ -1,0 +1,25 @@
+name: Grading
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test-group-2:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+          fetch-depth: 2
+          token: ${{ secrets.PAT }}
+      - name: Make check for an existing utility
+        shell: bash
+        run: |
+          cd "$(git diff --name-only HEAD~1 HEAD)" && \
+          make clean && \
+          [ -z "$(git status --short)" ] && \
+          mkdir -p build && \
+          cp -p ../7-sorter-utility/sorter ./build/ && \
+          [ -n "$(make check)" ] && \
+          make clean

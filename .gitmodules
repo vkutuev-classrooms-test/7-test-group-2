@@ -1,0 +1,3 @@
+[submodule "7-sorter-utility"]
+	path = 7-sorter-utility
+	url = https://github.com/vkutuev-classrooms-test/7-sorter-utility.git
